@@ -17,6 +17,59 @@ This script automates the process of updating AWS security group rules by replac
 - jq installed (for JSON parsing)
 - Appropriate AWS permissions to describe, revoke, and authorize security group rules
 
+## AWS CLI Setup
+### Installing AWS CLI
+If you don't have AWS CLI installed:
+
+```bash
+# For Linux
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# For macOS
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+```
+
+### Configuring AWS Credentials
+1. **Using the AWS CLI**:
+   ```bash
+   aws configure --profile <profile-name>
+   ```
+   You'll be prompted to enter:
+   - AWS Access Key ID
+   - AWS Secret Access Key
+   - Default region name (e.g., ap-northeast-1)
+   - Default output format (json recommended)
+
+2. **Manual Configuration**:
+   Create or edit `~/.aws/credentials`:
+   ```
+   [profile-name]
+   aws_access_key_id = YOUR_ACCESS_KEY
+   aws_secret_access_key = YOUR_SECRET_KEY
+   ```
+
+   Create or edit `~/.aws/config`:
+   ```
+   [profile profile-name]
+   region = ap-northeast-1
+   output = json
+   ```
+
+3. **Using AWS SSO**:
+   ```bash
+   aws configure sso --profile <profile-name>
+   ```
+   Follow the prompts to set up SSO authentication.
+
+4. **Testing Your Configuration**:
+   ```bash
+   aws sts get-caller-identity --profile <profile-name>
+   ```
+   This should return your AWS account ID, user ID, and ARN.
+
 ## Usage
 ```bash
 ./update_security_groups.sh <aws-profile>

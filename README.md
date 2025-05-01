@@ -42,11 +42,11 @@ This command runs the script with the specified AWS profile and saves all output
 Edit the following variables in the script to match your requirements:
 
 ```bash
-OLD_IP="14.201.181.110/32"  # Your old office IP with CIDR notation
+OLD_IP="1.2.3.4/32"  # Your old office IP with CIDR notation
 
 # Define arrays for new IPs and their descriptions
-declare -a NEW_IPS=("103.67.56.208/32" "103.67.56.226/32")
-declare -a DESCRIPTIONS=("8c-HQ-35" "8c-HQ-37")
+declare -a NEW_IPS=("5.6.7.8/32" "9.8.7.6/32")
+declare -a DESCRIPTIONS=("office1" "office2")
 
 AWS_REGION="ap-northeast-1" # Your AWS region
 ```
